@@ -41,7 +41,10 @@ const styles: Styles = {
     maxHeight: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    color: '#000000b5',
+    fontSize: '28px',
+    letterSpacing: '1px'
   },
   cardTitle: {
     fontSize: '24px',
@@ -91,15 +94,15 @@ const styles: Styles = {
     cursor: 'not-allowed',
   },
   createBranchBtn: {
-    background: '#005BB5',
+    background: '#005bb5',
     border: 'none',
-    borderRadius: '4px',
-    padding: '12px 16px',
-    fontSize: '14px',
+    padding: '14px 20px',
+    fontSize: '17px',
     fontWeight: '600',
     letterSpacing: '1px',
     fontFamily: 'system-ui',
     color: 'white',
+    borderRadius: '8px',
     cursor: 'pointer',
   },
   createBtnDisabled: {

@@ -57,7 +57,7 @@ const content: string = '<h2>Hi there</h2>'; // Initial content
 
 function App(): JSX.Element {
   const [branches, setBranches] = useState<Branch[]>([
-    { branchName: 1, startPoint: 1, versions: [{ version: 1, content }], left: 0 }
+    { branchName: 1, startPoint: 1, versions: [{ version: 1, content }], left: 0, parentBranch: 0, }
   ]);
   const [currentBranch, setCurrentBranch] = useState<number>(1);
   const [currentVersionIndices, setCurrentVersionIndices] = useState<CurrentVersionIndex[]>([
@@ -89,15 +89,17 @@ function App(): JSX.Element {
   }, [editor]);
 
   useEffect(() => {
-    const branch = branches.find(b => b.branchName === currentBranch);
-    if (branch) {
-      const version = branch.versions[currentVersionIndices.find((cur=> cur.branchName === branch.branchName)).currentVersionIndex - 1];
-      if (version) {
-        editor.commands.setContent(version.content);
-        updateWordCount(version.content);
-      }
-      calculateSvgDimensions();
-    }
+    // const branch = branches.find(b => b.branchName === currentBranch);
+    // if (branch) {
+    //   const version = branch.versions[currentVersionIndices.find((cur=> cur.branchName === branch.branchName)).currentVersionIndex - 1];
+    //   if (version) {
+    //     editor.commands.setContent(version.content);
+    //     updateWordCount(version.content);
+    //   }
+    //   calculateSvgDimensions();
+    // }
+    calculateSvgDimensions();
+
   }, [branches, currentVersionIndices]);
 
   useEffect(() => {
@@ -165,6 +167,9 @@ function App(): JSX.Element {
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>, branchName: number): void => {
     const newIndex = parseInt(e.target.value, 10);
+    const branch = branches.find(b => b.branchName === branchName);
+    const selectedContent = branch?.versions[newIndex - 1]?.content;
+
     if(currentBranch === branchName){
 
       // Update the current version index for the specific branch
@@ -176,10 +181,12 @@ function App(): JSX.Element {
         )
       );
       
-      const branch = branches.find(b => b.branchName === branchName);
-      const selectedContent:any = branch?.versions[newIndex - 1]?.content; // Adjusted to -1 since version index starts from 1
-      if (selectedContent) updateWordCount(selectedContent);
-
+      // const branch = branches.find(b => b.branchName === branchName);
+      // const selectedContent:any = branch?.versions[newIndex - 1]?.content; // Adjusted to -1 since version index starts from 1
+      if (selectedContent) {
+        editor.commands.setContent(selectedContent); //
+        updateWordCount(selectedContent);
+      }
     } else {
       handleUpdateCurrentBranch(branchName, newIndex)
     }
@@ -264,8 +271,13 @@ function App(): JSX.Element {
   )
 
   return (
-    <>
-      <div style={styles.card}>
+    <>  
+        <h2 style={{
+              color: '#000000b5',
+              fontSize: '28px',
+              letterSpacing: '1px'
+        }}>Versioned Rich Text Editor</h2>
+        <div style={styles.card}>
           <div style={styles.cardHeader}>
             <div>
               {editor && <MenuBar editor={editor} />}

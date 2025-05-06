@@ -7,10 +7,11 @@ function WordCount({ wordCount }:{wordCount: number}) {
 }
 const styles = {
     wordCount: {
-      fontSize: '16px',
-      color: '#6b7280',
+      fontSize: '20px',
+      color: 'rgb(79 87 103)',
       fontFamily: 'cursive',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      letterSpacing: '0px'
     }
   };
   
