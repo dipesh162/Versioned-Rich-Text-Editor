@@ -1,5 +1,7 @@
 # React + Vite
 
+Link: https://versioned-rich-text-editor-3sd76rfeh-dipesh162s-projects.vercel.app/
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
