@@ -88,7 +88,7 @@ function App(): JSX.Element {
     }
   }, [editor]);
 
-  useEffect(() => {
+  useEffect(() => { 
     // const branch = branches.find(b => b.branchName === currentBranch);
     // if (branch) {
     //   const version = branch.versions[currentVersionIndices.find((cur=> cur.branchName === branch.branchName)).currentVersionIndex - 1];
