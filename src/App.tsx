@@ -89,16 +89,16 @@ function App(): JSX.Element {
   }, [editor]);
 
   useEffect(() => { 
-    // const branch = branches.find(b => b.branchName === currentBranch);
-    // if (branch) {
-    //   const version = branch.versions[currentVersionIndices.find((cur=> cur.branchName === branch.branchName)).currentVersionIndex - 1];
-    //   if (version) {
-    //     editor.commands.setContent(version.content);
-    //     updateWordCount(version.content);
-    //   }
-    //   calculateSvgDimensions();
-    // }
-    calculateSvgDimensions();
+    const branch = branches.find(b => b.branchName === currentBranch);
+    if (branch) {
+      const version = branch.versions[currentVersionIndices.find((cur=> cur.branchName === branch.branchName)).currentVersionIndex - 1];
+      if (version) {
+        editor.commands.setContent(version.content);
+        updateWordCount(version.content);
+      }
+      calculateSvgDimensions();
+    }
+    // calculateSvgDimensions();
   }, [branches, currentVersionIndices]);
 
   useEffect(() => {
