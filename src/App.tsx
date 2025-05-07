@@ -99,7 +99,6 @@ function App(): JSX.Element {
     //   calculateSvgDimensions();
     // }
     calculateSvgDimensions();
-
   }, [branches, currentVersionIndices]);
 
   useEffect(() => {
